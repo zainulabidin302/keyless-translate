@@ -17,30 +17,35 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
-          version: 10
+          version: 10 # Using a modern, compatible pnpm version
 
-      # Combined and corrected Node.js setup
-      - name: Setup Node.js and npm auth
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
-          # This sets up the .npmrc file for authentication
-          registry-url: 'https://registry.npmjs.org/'
-          # 'token' is the correct input, not 'node-auth-token'
-          token: ${{ secrets.NPM_TOKEN }}
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: Build all packages
-        run: pnpm -r build
+      # --- THE CRUCIAL FIX: BUILD PACKAGES SEQUENTIALLY ---
+      - name: Build Core Package
+        run: pnpm --filter "@zainulabidin302/keyless-translate-core" build
 
-      # This step should no longer be needed if you version locally first
-      # But it's good to keep it for a fully automated flow.
-      # It will fail if the version already exists, which is safe.
-      # - name: Set package versions from git tag
-      #   run: pnpm version ${{ github.ref_name }} --git-tag-version=false --no-git-checks
+      - name: Build React Package
+        run: pnpm --filter "@zainulabidin302/keyless-translate-react" build
+      
+      # It's good practice to also build the demo app to ensure integration is valid
+      - name: Build Demo App to Verify Integration
+        run: pnpm --filter demo build
+
+      # --- PUBLISH THE CORRECTLY BUILT PACKAGES ---
+      - name: Setup npm for Publishing
+        uses: actions/setup-node@v4
+        with:
+          # This action needs to run again to set up the .npmrc file for auth
+          registry-url: 'https://registry.npmjs.org/'
+          token: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish packages to npm
         run: pnpm --filter "@zainulabidin302/*" publish --no-git-checks --access public
