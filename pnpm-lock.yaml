@@ -116,7 +116,7 @@ importers:
 
   packages/react:
     dependencies:
-      '@obp-translate/core':
+      '@keyless-translate/core':
         specifier: workspace:*
         version: link:../core
       react:

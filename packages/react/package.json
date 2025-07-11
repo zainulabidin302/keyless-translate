@@ -13,7 +13,7 @@
     "dist"
   ],
   "dependencies": {
-    "@obp-translate/core": "workspace:*"
+    "@keyless-translate/core": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
