@@ -28,22 +28,32 @@ jobs:
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
+          # Make the npm registry available for the versioning step
+          registry-url: 'https://registry.npmjs.org/'
 
       # 4. Install all dependencies for all packages
       - name: Install dependencies
         run: pnpm install
 
-      # 5. Run the 'build' script in all packages
+      # 5. Build all packages
       - name: Build all packages
         run: pnpm -r build
 
-      # 6. Log in to the npm registry using our secret token
-      - name: Setup npm registry
+      # 6. Set package versions from git tag
+      # This is the new, crucial step!
+      - name: Set package versions
+        run: pnpm version ${{ github.ref_name }} --git-tag-version=false
+        # ${{ github.ref_name }} dynamically gets the tag name (e.g., v0.1.1)
+        # It then runs `pnpm version v0.1.1 --git-tag-version=false`
+        # This updates all package.json files and removes 'workspace:*'
+
+      # 7. Log in to the npm registry using our secret token
+      - name: Setup npm registry for publishing
         uses: actions/setup-node@v4
         with:
           registry-url: 'https://registry.npmjs.org/'
           node-auth-token: ${{ secrets.NPM_TOKEN }}
 
-      # 7. Publish ONLY the packages in the @zainulabidin302 scope
+      # 8. Publish the packages to npm
       - name: Publish packages
         run: pnpm --filter "@zainulabidin302/*" publish --no-git-checks --access public
