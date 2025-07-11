@@ -7,53 +7,40 @@ on:
     tags:
       - 'v*.*.*'
 
-# A job is a set of steps that execute on a virtual machine
 jobs:
   publish-npm:
-    runs-on: ubuntu-latest # Use a standard Linux environment
+    runs-on: ubuntu-latest
     steps:
-      # 1. Get the code from your repository
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Set up pnpm so we can use its commands
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
           version: 8
 
-      # 3. Set up the correct version of Node.js
-      - name: Setup Node.js
+      # Combined and corrected Node.js setup
+      - name: Setup Node.js and npm auth
         uses: actions/setup-node@v4
         with:
           node-version-file: '.nvmrc'
           cache: 'pnpm'
-          # Make the npm registry available for the versioning step
+          # This sets up the .npmrc file for authentication
           registry-url: 'https://registry.npmjs.org/'
+          # 'token' is the correct input, not 'node-auth-token'
+          token: ${{ secrets.NPM_TOKEN }}
 
-      # 4. Install all dependencies for all packages
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
-      # 5. Build all packages
       - name: Build all packages
         run: pnpm -r build
 
-      # 6. Set package versions from git tag
-      # This is the new, crucial step!
-      - name: Set package versions
-        run: pnpm version ${{ github.ref_name }} --git-tag-version=false
-        # ${{ github.ref_name }} dynamically gets the tag name (e.g., v0.1.1)
-        # It then runs `pnpm version v0.1.1 --git-tag-version=false`
-        # This updates all package.json files and removes 'workspace:*'
+      # This step should no longer be needed if you version locally first
+      # But it's good to keep it for a fully automated flow.
+      # It will fail if the version already exists, which is safe.
+      - name: Set package versions from git tag
+        run: pnpm version ${{ github.ref_name }} --git-tag-version=false --no-git-checks
 
-      # 7. Log in to the npm registry using our secret token
-      - name: Setup npm registry for publishing
-        uses: actions/setup-node@v4
-        with:
-          registry-url: 'https://registry.npmjs.org/'
-          node-auth-token: ${{ secrets.NPM_TOKEN }}
-
-      # 8. Publish the packages to npm
-      - name: Publish packages
+      - name: Publish packages to npm
         run: pnpm --filter "@zainulabidin302/*" publish --no-git-checks --access public

@@ -9,6 +9,7 @@ export default defineConfig({
     dts({
       // This tells dts to use the tsconfig for the build, respecting references
       tsconfigPath: './tsconfig.json',
+      staticImport: true
     }),
     tsconfigPaths(),
   ],
