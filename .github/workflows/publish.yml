@@ -1,0 +1,49 @@
+# Name of the workflow shown on GitHub
+name: Publish to npm
+
+# Trigger this workflow ONLY when a tag starting with 'v' is pushed
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+# A job is a set of steps that execute on a virtual machine
+jobs:
+  publish-npm:
+    runs-on: ubuntu-latest # Use a standard Linux environment
+    steps:
+      # 1. Get the code from your repository
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # 2. Set up pnpm so we can use its commands
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
+      # 3. Set up the correct version of Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+          cache: 'pnpm'
+
+      # 4. Install all dependencies for all packages
+      - name: Install dependencies
+        run: pnpm install
+
+      # 5. Run the 'build' script in all packages
+      - name: Build all packages
+        run: pnpm -r build
+
+      # 6. Log in to the npm registry using our secret token
+      - name: Setup npm registry
+        uses: actions/setup-node@v4
+        with:
+          registry-url: 'https://registry.npmjs.org/'
+          node-auth-token: ${{ secrets.NPM_TOKEN }}
+
+      # 7. Publish ONLY the packages in the @keyless-translate scope
+      - name: Publish packages
+        run: pnpm --filter "@keyless-translate/*" publish --no-git-checks --access public

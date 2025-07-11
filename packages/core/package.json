@@ -1,0 +1,16 @@
+{
+  "name": "@keyless-translate/core",
+  "version": "0.1.0",
+  "description": "The framework-agnostic core of the translation library.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch"
+  },
+  "files": [
+    "dist"
+  ],
+  "keywords": ["i18n", "translation", "core"]
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@keyless-translate/react",
+  "version": "0.1.0",
+  "description": "React adapter for the translation library.",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite build --watch"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@obp-translate/core": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  },
+  "keywords": ["i18n", "translation", "react"]
+}

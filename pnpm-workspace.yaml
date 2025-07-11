@@ -1,0 +1,4 @@
+packages:
+  - 'packages/*'
+  - 'packages/loaders/*'
+  - 'apps/*' # For our demo app
