@@ -48,4 +48,4 @@ jobs:
           token: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish packages to npm
-        run: pnpm --filter "@zainulabidin302/*" publish --no-git-checks --access public
+        run: pnpm --filter "@zainulabidin302/*" publish --no-git-checks --from-git --access public
