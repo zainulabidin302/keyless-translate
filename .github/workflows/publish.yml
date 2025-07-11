@@ -39,8 +39,8 @@ jobs:
       # This step should no longer be needed if you version locally first
       # But it's good to keep it for a fully automated flow.
       # It will fail if the version already exists, which is safe.
-      - name: Set package versions from git tag
-        run: pnpm version ${{ github.ref_name }} --git-tag-version=false --no-git-checks
+      # - name: Set package versions from git tag
+      #   run: pnpm version ${{ github.ref_name }} --git-tag-version=false --no-git-checks
 
       - name: Publish packages to npm
         run: pnpm --filter "@zainulabidin302/*" publish --no-git-checks --access public
