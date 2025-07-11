@@ -13,7 +13,7 @@
     "dist"
   ],
   "dependencies": {
-    "@zainulabidin302/keyless-translate-core": "workspace:*"
+    "@zainulabidin302/keyless-translate-core": "0.1.0"
   },
   "peerDependencies": {
     "react": ">=16.8.0",
