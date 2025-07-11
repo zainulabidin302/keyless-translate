@@ -1,7 +1,7 @@
 import type { I18nLoader } from '@keyless-translate/core';
 
 // Mock translations
-const db = {
+const db: Record<string, Record<string, string>> = {
   es: {
     'Welcome to your new library!': '¡Bienvenido a tu nueva librería!',
     'Current language: {{lang}}': 'Idioma actual: {{lang}}',

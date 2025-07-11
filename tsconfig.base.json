@@ -9,6 +9,13 @@
     "esModuleInterop": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true
+    "noImplicitReturns": true,
+
+    /* THE CRUCIAL ADDITION FOR MONOREPOS */
+    "baseUrl": ".",
+    "paths": {
+      "@keyless-translate/core": ["packages/core/src"],
+      "@keyless-translate/react": ["packages/react/src"]
+    }
   }
 }

@@ -85,3 +85,16 @@ ehthumbs_vista.db
 # You could add specific ignores for other apps here too if needed
 # /apps/another-app/dist
 # /apps/another-app/.vite
+
+
+# ===================================================================
+# TypeScript Build Artifacts
+# ===================================================================
+# TypeScript build cache file
+*.tsbuildinfo
+
+# Ignore JavaScript and Declaration files generated next to
+# the source TypeScript files. Our bundler places the final
+# output in the 'dist' folder.
+**/src/**/*.js
+**/src/**/*.d.ts

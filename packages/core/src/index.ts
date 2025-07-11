@@ -3,6 +3,7 @@ import { debounce, interpolate } from './utils';
 
 type Listener = (type: I18nEvents) => void;
 
+
 export function createI18n(options: {
   sourceLocale: string;
   locale: string;
@@ -74,3 +75,4 @@ export function createI18n(options: {
 }
 
 export type I18nInstance = ReturnType<typeof createI18n>;
+export type { I18nLoader, I18nEvents } from './types';
