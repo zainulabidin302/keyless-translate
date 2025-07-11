@@ -1,5 +1,5 @@
 {
-  "name": "@keyless-translate/react",
+  "name": "@zainulabidin302/keyless-translate-react",
   "version": "0.1.0",
   "description": "React adapter for the translation library.",
   "main": "./dist/index.js",
@@ -13,7 +13,7 @@
     "dist"
   ],
   "dependencies": {
-    "@keyless-translate/core": "workspace:*"
+    "@zainulabidin302/keyless-translate-core": "workspace:*"
   },
   "peerDependencies": {
     "react": ">=16.8.0",

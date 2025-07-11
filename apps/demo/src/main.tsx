@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
 
-import { createI18n } from '@keyless-translate/core';
-import { I18nProvider } from '@keyless-translate/react';
+import { createI18n } from '@zainulabidin302/keyless-translate-core';
+import { I18nProvider } from '@zainulabidin302/keyless-translate-react';
 import { MockLoader } from './mockLoader.ts';
 
 const i18n = createI18n({

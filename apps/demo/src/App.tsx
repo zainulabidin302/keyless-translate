@@ -1,4 +1,4 @@
-import { useTranslation } from '@keyless-translate/react';
+import { useTranslation } from '@zainulabidin302/keyless-translate-react';
 import './App.css';
 
 function App() {

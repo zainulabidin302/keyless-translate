@@ -19,13 +19,13 @@ export default defineConfig({
       fileName: 'index',
     },
     rollupOptions: {
-      external: ['react', 'react-dom', 'react/jsx-runtime', '@keyless-translate/core'],
+      external: ['react', 'react-dom', 'react/jsx-runtime', '@zainulabidin302/keyless-translate-core'],
       output: {
         globals: {
           react: 'React',
           'react-dom': 'ReactDOM',
           'react/jsx-runtime': 'jsxRuntime',
-          '@keyless-translate/core': 'KeylessTranslateCore',
+          '@zainulabidin302/keyless-translate-core': 'KeylessTranslateCore',
         },
       },
     },

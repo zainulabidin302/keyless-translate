@@ -14,8 +14,8 @@
     /* THE CRUCIAL ADDITION FOR MONOREPOS */
     "baseUrl": ".",
     "paths": {
-      "@keyless-translate/core": ["packages/core/src"],
-      "@keyless-translate/react": ["packages/react/src"]
+      "@zainulabidin302/keyless-translate-core": ["packages/core/src"],
+      "@zainulabidin302/keyless-translate-react": ["packages/react/src"]
     }
   }
 }

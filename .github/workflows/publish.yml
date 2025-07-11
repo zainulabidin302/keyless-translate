@@ -44,6 +44,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org/'
           node-auth-token: ${{ secrets.NPM_TOKEN }}
 
-      # 7. Publish ONLY the packages in the @keyless-translate scope
+      # 7. Publish ONLY the packages in the @zainulabidin302 scope
       - name: Publish packages
-        run: pnpm --filter "@keyless-translate/*" publish --no-git-checks --access public
+        run: pnpm --filter "@zainulabidin302/*" publish --no-git-checks --access public

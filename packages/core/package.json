@@ -1,5 +1,5 @@
 {
-  "name": "@keyless-translate/core",
+  "name": "@zainulabidin302/keyless-translate-core",
   "version": "0.1.0",
   "description": "The framework-agnostic core of the translation library.",
   "main": "./dist/index.js",

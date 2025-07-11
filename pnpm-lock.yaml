@@ -68,10 +68,10 @@ importers:
 
   apps/demo:
     dependencies:
-      '@keyless-translate/core':
+      '@zainulabidin302/keyless-translate-core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@keyless-translate/react':
+      '@zainulabidin302/keyless-translate-react':
         specifier: workspace:*
         version: link:../../packages/react
       react:
@@ -119,7 +119,7 @@ importers:
 
   packages/react:
     dependencies:
-      '@keyless-translate/core':
+      '@zainulabidin302/keyless-translate-core':
         specifier: workspace:*
         version: link:../core
       react:

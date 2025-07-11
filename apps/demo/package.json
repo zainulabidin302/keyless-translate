@@ -10,8 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@keyless-translate/core": "workspace:*",
-    "@keyless-translate/react": "workspace:*",
+    "@zainulabidin302/keyless-translate-core": "workspace:*",
+    "@zainulabidin302/keyless-translate-react": "workspace:*",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

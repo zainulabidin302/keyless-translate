@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import type { I18nInstance } from '@keyless-translate/core';
+import type { I18nInstance } from '@zainulabidin302/keyless-translate-core';
 
 export const I18nContext = createContext<I18nInstance | null>(null);
 

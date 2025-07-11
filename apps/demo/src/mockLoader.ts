@@ -1,4 +1,4 @@
-import type { I18nLoader } from '@keyless-translate/core';
+import type { I18nLoader } from '@zainulabidin302/keyless-translate-core';
 
 // Mock translations
 const db: Record<string, Record<string, string>> = {
